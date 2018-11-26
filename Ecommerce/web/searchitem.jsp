@@ -41,7 +41,7 @@
                 
           <div class="container">
             <h1>You can Buy items here!</h1>
-            <form method="post">
+            <form method="post" onsubmit="document.getElementById('flag').value='true'">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -66,38 +66,45 @@
                     <td><%=rset.getString(2) %></td>
                     <td><%=rset.getString(3) %></td>
                     <td><%=rset.getInt(4) %></td>
-                    <input type="hidden" name="itemid" value="<%=rset.getInt("itemid")%>">
-                    <td><button type="submit" class="btn btn-warning" name="submit" value="submit">Buy Item</button></td>
+                    <td><%=rset.getInt("itemid")%></td>
+                    <!--input type="text" name="itemid" value="<%--=rset.getInt("itemid")--%>">
+                    <input type="hidden" name="flag" id="flag" value="false"-->
+                    <td><button type="submit" class="btn btn-warning" name="submit" value="<%=rset.getInt("itemid")%>">Buy Item</button></td>
                 </tr>
-                <%}
+                
+                <% 
+                    }
                    %>
                 </tbody>
                 </table>
-                <%
-                    if(request.getParameter("itemid")!=null){
-                        String itemid = request.getParameter("itemid");
+                </form>
+                <%  
+                    if(request.getParameter("submit")!=null){
+                        String itemid = request.getParameter("submit");
                         ResultSet buyitem = stmt.executeQuery("select * from itemlist where itemid="+itemid);
-                        ResultSet userinfo = stmt.executeQuery("select * from users where username='"+((String) session.getAttribute("username"))+"'");
-                        if(buyitem.next() && userinfo.next())
-                        {
-                         if(buyitem.getInt("itemPrice")<=userinfo.getInt("wallet")){
-                            int buy = stmt.executeUpdate("update itemlist set itemBuyer='"+((String) session.getAttribute("username"))+"' where itemId="+itemid+"");
-                           /* buy = stmt.executeUpdate("update user set wallet=wallet - " + (buyitem.getInt("itemPrice")) + " where username='"+((String) session.getAttribute("username"))+"'");
-                            buy = stmt.executeUpdate("update user set wallet=wallet + " + (buyitem.getInt("itemPrice")) + " where username='"+(buyitem.getInt("itemSeller"))+"'");
-*/
+                        buyitem.next();int bi = (buyitem.getInt("itemPrice"));String bs = (buyitem.getString("itemSeller"));
+                        ResultSet userinfo = stmt.executeQuery("select * from users where username='"+((String) session.getAttribute("username"))+"'");                        
+                        userinfo.next();int ui = (userinfo.getInt("wallet"));
+                        //out.println(bi + ui);    
+                       
+                         if(bi<=ui){
+                             //out.println("update user set wallet=wallet - " + (bi) + " where username='"+((String) session.getAttribute("username"))+"'"+";");
+                            int buy = stmt.executeUpdate("update itemlist set itemBuyer='"+((String) session.getAttribute("username"))+"' where itemId="+itemid);
+                            buy = stmt.executeUpdate("update users set wallet=wallet - " + (bi) + " where username='"+((String) session.getAttribute("username"))+"'");
+                            buy = stmt.executeUpdate("update users set wallet=wallet + " + (bi) + " where username='"+(bs)+"'");
+
                             out.println("<h1>Purchase Successfull!</h1>");
                          }
                          else{
                             out.println("<h1>Not enough money for the purchase in your wallet.</h1>");
                          }
-                        }
                         
                     }
                     }catch(SQLException e){}
                 catch(ClassNotFoundException e){}
                 %>
                     
-            </form>
+            
           </div>
     </body>
 </html>
