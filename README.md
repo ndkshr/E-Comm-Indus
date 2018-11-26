@@ -2,11 +2,19 @@
 e commerce using jsp and java
 
 MySQL username : root
+
+
 MySQL password : root
+
+
 
 use ecomm;
 
+
+
 mysql> desc users;
+
+
 +----------+--------------+------+-----+---------+-------+
 | Field    | Type         | Null | Key | Default | Extra |
 +----------+--------------+------+-----+---------+-------+
@@ -16,7 +24,11 @@ mysql> desc users;
 | name     | varchar(50)  | YES  |     | NULL    |       |
 +----------+--------------+------+-----+---------+-------+
 
+
+
 mysql> desc itemlist;
+
+
 +------------+--------------+------+-----+---------+----------------+
 | Field      | Type         | Null | Key | Default | Extra          |
 +------------+--------------+------+-----+---------+----------------+
