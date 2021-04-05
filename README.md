@@ -12,24 +12,9 @@ A simple E-commerce platform using JSP to render the pages and Java as the backe
 mysql>>> `use ecomm;`
 mysql>>> `desc users;`
 
-+----------+--------------+------+-----+---------+-------+
-| Field    | Type         | Null | Key | Default | Extra |
-+----------+--------------+------+-----+---------+-------+
-| username | varchar(100) | NO   | PRI | NULL    |       |
-| password | varchar(30)  | YES  |     | NULL    |       |
-| wallet   | int(11)      | YES  |     | NULL    |       |
-| name     | varchar(50)  | YES  |     | NULL    |       |
-+----------+--------------+------+-----+---------+-------+
+![Describe users table schema](https://raw.githubusercontent.com/ndkshr/E-Comm/master/table1.PNG)
 
 mysql>>> `desc itemlist;`
 
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| itemName   | varchar(100) | YES  |     | NULL    |                |
-| itemType   | varchar(50)  | YES  |     | NULL    |                |
-| itemSeller | varchar(100) | YES  |     | NULL    |                |
-| itemPrice  | int(11)      | YES  |     | NULL    |                |
-| itemBuyer  | varchar(100) | YES  |     | NULL    |                |
-| itemId     | int(11)      | NO   | PRI | NULL    | auto_increment |
-+------------+--------------+------+-----+---------+----------------+
+![Describe itemlist table schema](https://raw.githubusercontent.com/ndkshr/E-Comm/master/table2.PNG)
+
