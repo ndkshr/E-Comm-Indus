@@ -1,19 +1,16 @@
 # E-Comm
-e commerce using jsp and java
+A simple E-commerce platform using JSP to render the pages and Java as the backend.
 
-MySQL username : root
+### MySQL Setup (Hardcoded into the project files)
 
-
-MySQL password : root
-
-
-
-use ecomm;
+`username` : root
+`password` : root
 
 
+### MySQL commands
 
-mysql> desc users;
-
+mysql>>> `use ecomm;`
+mysql>>> `desc users;`
 
 +----------+--------------+------+-----+---------+-------+
 | Field    | Type         | Null | Key | Default | Extra |
@@ -24,10 +21,7 @@ mysql> desc users;
 | name     | varchar(50)  | YES  |     | NULL    |       |
 +----------+--------------+------+-----+---------+-------+
 
-
-
-mysql> desc itemlist;
-
+mysql>>> `desc itemlist;`
 
 +------------+--------------+------+-----+---------+----------------+
 | Field      | Type         | Null | Key | Default | Extra          |
